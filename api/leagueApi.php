@@ -10,10 +10,23 @@ class LeagueApi extends RiotOfApi{
                 'server' => $params['server'],
                 'game' => $params['game']
             ));
-            //https://la2.api.riotgames.com/lol
             $apikey = RiotOfApi::getApiKey();
             $status = $url . '/status/v4/platform-data?api_key='.$apikey;
             $response = file_get_contents($status);
+            $decode = json_decode($response, true);
+            return $decode;
+        }
+    }
+
+    public static function challengerLeague($params = array()){
+        if(isset($params['server']) && isset($params['game']) && isset($params['opt'])){
+            $url = RiotOfApi::getRiotApi(array(
+                'server' => $params['server'],
+                'game' => $params['game']
+            ));
+            $apikey = RiotOfApi::getApiKey();
+            $challenger = $url . '/league/v4/challengerleagues/by-queue/'.$params['opt'].'?api_key='.$apikey;
+            $response = file_get_contents($challenger);
             $decode = json_decode($response, true);
             return $decode;
         }

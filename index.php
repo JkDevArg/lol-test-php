@@ -5,9 +5,11 @@ require('api/leagueApi.php');
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$status = LeagueApi::statusServer(array(
+//RANKED_SOLO_5x5
+$status = LeagueApi::challengerLeague(array(
     'server' => 'la2',
-    'game' => 'lol'
+    'game' => 'lol',
+    'opt' => 'RANKED_SOLO_5x5'
 ));
 
 print_r($status);
