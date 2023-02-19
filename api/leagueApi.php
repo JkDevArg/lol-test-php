@@ -38,7 +38,6 @@ class LeagueApi extends RiotOfApi{
     }
 
     public static function leagueExp($params = array()){
-        //https://la2.api.riotgames.com/lol/league-exp/v4/entries/RANKED_SOLO_5x5/BRONZE/I?page=1&api_key=RGAPI-46079da1-1129-4444-9c7d-5dbd7e09e48b
         if(isset($params['server']) && isset($params['game'])){
             $url = RiotOfApi::getRiotApi(array(
                 'server' => $params['server'],
@@ -48,6 +47,7 @@ class LeagueApi extends RiotOfApi{
             $urlUnified = $url . '/league-exp/v4/entries/';
             $jsonResp = jsonFormatter::jsonDecode(array(
                 'url' => $urlUnified,
+                'page' => $params['page'],
                 'opt1' => $params['opt1'],
                 'opt2' => $params['opt2'],
                 'opt3' => $params['opt3'],

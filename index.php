@@ -20,6 +20,7 @@ $dotenv->load();
 $status = LeagueApi::leagueExp(array(
     'server' => 'la2',
     'game' => 'lol',
+    'page' => '1',
     'opt1' => 'RANKED_SOLO_5x5',
     'opt2' => 'BRONZE',
     'opt3' => 'I'
@@ -28,4 +29,4 @@ $status = LeagueApi::leagueExp(array(
 /* foreach ($status as $s){
     print_r($s['summonerName'] .' <br> ');
 } */
-print_r(json_encode($status));
+print_r($status);

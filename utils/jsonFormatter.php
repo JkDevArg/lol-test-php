@@ -11,12 +11,14 @@
                 }
             }
             $opt_text = implode('/', $opt_values);
-            $parse = $params['url'] . $opt_text . '?api_key='.$params['apikey'];
-            $response = file_get_contents($parse);
-            $decode = json_decode($response, true);
-            return $decode;
+            $parse = $params['url'] . $opt_text . '?page='.$params['page'].'&api_key='.$params['apikey'];
+            try {
+                $response = file_get_contents($parse);
+                $decode = json_decode($response, true);
+                return $decode;
+            } catch (Exception $e) {
+                return 'Se ha producido un error al intentar obtener los datos: ' . $e->getMessage();
+            }
         }
     }
-
-
 ?>
