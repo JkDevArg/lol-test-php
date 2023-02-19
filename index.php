@@ -9,7 +9,12 @@ $dotenv->load();
 $status = LeagueApi::challengerLeague(array(
     'server' => 'la2',
     'game' => 'lol',
-    'opt' => 'RANKED_SOLO_5x5'
+    'opt' => 'RANKED_SOLO_5x5',
 ));
+
+/* $status = LeagueApi::statusServer(array(
+    'server' => 'la2',
+    'game' => 'lol',
+)); */
 
 print_r($status);
