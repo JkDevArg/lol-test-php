@@ -68,6 +68,17 @@
                     </button>
                 </form>
             </div>
+            <div class="row hide" id="show">
+                <div class="col s12">
+                    <div class="card blue-grey grey darken-2">
+                        <div class="card-content white-text">
+                            <span class="card-title"></span>
+                            <hr>
+                            <code class="card-text"></code>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!--  Scripts-->
@@ -77,6 +88,8 @@
             document.write('<script src="assets/js/jquery-3.2.1.min.js"><\/script>');
         }
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.7/beautify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.7/beautify-css.js"></script>
     <script src="assets/js/jquery.timeago.min.js"></script>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/prism.js"></script>
