@@ -11,14 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-
-//RANKED_SOLO_5x5
-/* $status = LeagueApi::challengerLeague(array(
-    'server' => 'la2',
-    'game' => 'lol',
-    'opt' => 'RANKED_SOLO_5x5',
-)); */
-
 //STATUS SERVER
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(isset($_POST['server_status']) && isset($_POST['server']) && isset($_POST['game'])){
@@ -28,16 +20,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         ));
         echo json_encode($status);
     }
-}
-/* $status = LeagueApi::leagueExp(array(
-    'server' => 'la2',
-    'game' => 'lol',
-    'page' => '1',
-    'opt1' => 'RANKED_SOLO_5x5',
-    'opt2' => 'BRONZE',
-    'opt3' => 'I'
-)); */
 
-/* foreach ($status as $s){
-    print_r($s['summonerName'] .' <br> ');
-} */
+    if(isset($_POST['challenger_league']) && isset($_POST['server']) && isset($_POST['game'])){
+        $status = LeagueApi::challengerLeague(array(
+            'server' => $_POST['server'],
+            'game' => $_POST['game'],
+            'opt' => $_POST['opt'],
+        ));
+    }
+
+    if(isset($_POST['league_exp']) && isset($_POST['server']) && isset($_POST['game'])){
+        $status = LeagueApi::leagueExp(array(
+            'server' => $_POST['server'],
+            'game' => $_POST['game'],
+            'page' => $_POST['page'],
+            'opt1' => $_POST['opt1'],
+            'opt2' => $_POST['opt2'],
+            'opt3' => $_POST['opt3']
+        ));
+    }
+}

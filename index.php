@@ -1,3 +1,7 @@
+<?php
+    require_once 'api/configApi.php';
+    $server = ConfigApi::getServers();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -42,22 +46,11 @@
                         <div class="input-field col s6">
                             <select name="server" required>
                                 <option value="" disabled selected>Elige un servidor</option>
-                                <option value="BR1">BR1</option>
-                                <option value="EUN1">EUN1</option>
-                                <option value="EUW1">EUW1</option>
-                                <option value="JP1">JP1</option>
-                                <option value="KR">KR</option>
-                                <option value="LA1">LA1</option>
-                                <option value="LA2">LA2</option>
-                                <option value="NA1">NA1</option>
-                                <option value="OC1">OC1</option>
-                                <option value="PH2">PH2</option>
-                                <option value="RU">RU</option>
-                                <option value="SG2">SG2</option>
-                                <option value="TH2">TH2</option>
-                                <option value="TR1">TR1</option>
-                                <option value="TW2">TW2</option>
-                                <option value="VN2">VN2</option>
+                                <?php
+                                    foreach ($server as $s) {
+                                        echo '<option value="'.$s.'">'.$s.'</option>';
+                                    }
+                                ?>
                             </select>
                             <label>Servidor</label>
                         </div>
@@ -70,7 +63,7 @@
                         </div>
                         <input type="hidden" id="server_status" name="server_status" value="true">
                     </div>
-                    <button class="btn waves-effect waves-light" type="submit">Submit
+                    <button class="btn waves-effect waves-light" type="submit">Enviar
                         <i class="material-icons right">send</i>
                     </button>
                 </form>
