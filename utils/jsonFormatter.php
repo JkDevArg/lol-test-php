@@ -11,7 +11,8 @@
                 }
             }
             $opt_text = implode('/', $opt_values);
-            $parse = $params['url'] . $opt_text . '?page='.$params['page'].'&api_key='.$params['apikey'];
+            $page = (isset($params['page']) ? '?page='.$params['page'].'&.' : '?');
+            $parse = $params['url'] . $opt_text . $page . 'api_key='.$params['apikey'];
             try {
                 $response = file_get_contents($parse);
                 $decode = json_decode($response, true);
