@@ -1,12 +1,12 @@
 const cardTitle = document.querySelector('.card-title');
 const cardText = document.querySelector('.card-text');
 const cardShow = document.querySelector('#show');
-const form = document.querySelector('form');
-form.addEventListener('submit', event => {
+
+function sendForm(formulario) {
   event.preventDefault();
-  const formData = new FormData(event.target);
-  sendData(formData);
-});
+  const data = new FormData(formulario);
+  sendData(data);
+}
 
 function sendData(formData) {
   fetch('api.php', {
@@ -21,13 +21,19 @@ function sendData(formData) {
     }
   })
   .then(data => {
-    stringify = JSON.stringify(data);
-    cardShow.classList.remove('hide');
-    beauty = js_beautify(stringify)
-    cardTitle.innerHTML = data.name;
-    cardText.innerHTML = beauty;
+    if(data.status){
+        M.toast({html: data.msg, classes: 'rounded red darken-1'});
+    }else{
+      stringify = JSON.stringify(data);
+      cardShow.classList.remove('hide');
+      beauty = js_beautify(stringify)
+      cardTitle.innerHTML = data.name;
+      cardText.innerHTML = beauty;
+    }
   })
   .catch(error => {
     console.error('Error:', error);
+    const errorMessage = document.getElementById('error-message');
+    M.toast({html: 'Se produjo un error al obtener los datos.', classes: 'rounded red darken-1'});
   });
 }

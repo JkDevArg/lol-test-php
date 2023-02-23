@@ -25,6 +25,15 @@ class ConfigApi {
         ];
         return $getServers;
     }
+
+    public static function getTypeGame(){
+        $getTypeGame = [
+            'RANKED_SOLO_5X5' => 'RANKED_SOLO_5x5',
+            'RANKED_FLEX_SR' => 'RANKED_FLEX_SR',
+            'RANKED_FLEX_TT' => 'RANKED_FLEX_TT'
+        ];
+        return $getTypeGame;
+    }
 }
 
 ?>

@@ -1,6 +1,8 @@
 <?php
-    require_once 'api/configApi.php';
-    $server = ConfigApi::getServers();
+require_once 'api/configApi.php';
+
+$server = ConfigApi::getServers();
+$gametype = ConfigApi::getTypeGame();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -28,28 +30,35 @@
 
 <body>
     <div id="blue" class="block">
-        <nav>
+        <nav class="nav-extended">
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo center"><i class="material-icons left">pets</i>ElFetu</a>
                 <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li><a href="https://github.com/JkDevArg/lol-test-php" target="_blank">Github</a></li>
                 </ul>
             </div>
+            <div class="nav-content">
+                <ul class="tabs tabs-transparent">
+                    <li class="tab"><a href="#server_status">Server Status</a></li>
+                    <li class="tab"><a class="active" href="#challenger_league">Challenger League</a></li>
+                </ul>
+            </div>
         </nav>
     </div>
     <div class="container">
-        <div class="section">
+        <!-- SECTION SERVER STATUS -->
+        <div class="section" id="server_status">
             <div class="row">
-                <form class="col s12" id="status">
+                <form class="col s12" onsubmit="sendForm(this)" id="status">
                     <h5 class="blue-text text-darken-2">Server Status</h5>
                     <div class="row">
                         <div class="input-field col s6">
                             <select name="server" required>
                                 <option value="" disabled selected>Elige un servidor</option>
                                 <?php
-                                    foreach ($server as $s) {
-                                        echo '<option value="'.$s.'">'.$s.'</option>';
-                                    }
+                                foreach ($server as $s) {
+                                    echo '<option value="' . $s . '">' . $s . '</option>';
+                                }
                                 ?>
                             </select>
                             <label>Servidor</label>
@@ -68,26 +77,65 @@
                     </button>
                 </form>
             </div>
-            <div class="row hide" id="show">
-                <div class="col s12">
-                    <div class="card blue-grey grey darken-2">
-                        <div class="card-content white-text">
-                            <span class="card-title"></span>
-                            <hr>
-                            <code class="card-text"></code>
+        </div>
+        <!-- SECTION CHALLENGER LEAGUE -->
+        <div class="section" id="challenger_league">
+            <div class="row">
+                <form class="col s12" onsubmit="sendForm(this)" id="challenger">
+                    <h5 class="blue-text text-darken-2">Challenger League</h5>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <select name="server" required>
+                                <option value="" disabled selected>Elige un servidor</option>
+                                <?php
+                                foreach ($server as $s) {
+                                    echo '<option value="' . $s . '">' . $s . '</option>';
+                                }
+                                ?>
+                            </select>
+                            <label>Servidor</label>
                         </div>
+                        <div class="input-field col s4">
+                            <select name="game" required>
+                                <option value="" disabled selected>Juego</option>
+                                <option value="lol">League of Legends</option>
+                            </select>
+                            <label>Juego</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <select name="opt" required>
+                                <option value="" disabled selected>Tipo de Juego</option>
+                                <?php
+                                foreach ($gametype as $g) {
+                                    echo '<option value="' . $g . '">' . $g . '</option>';
+                                }
+                                ?>
+                            </select>
+                            <label>Tipo</label>
+                        </div>
+                        <input type="hidden" id="challenger_league" name="challenger_league" value="true">
+                    </div>
+                    <button class="btn waves-effect waves-light" type="submit">Enviar
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!-- Respuesta -->
+        <div class="row hide" id="show">
+            <div class="col s12">
+                <div class="card blue-grey grey darken-2">
+                    <div class="card-content white-text">
+                        <span class="card-title"></span>
+                        <hr>
+                        <code class="card-text"></code>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script>
-        if (!window.jQuery) {
-            document.write('<script src="assets/js/jquery-3.2.1.min.js"><\/script>');
-        }
-    </script>
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.7/beautify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.7/beautify-css.js"></script>
     <script src="assets/js/jquery.timeago.min.js"></script>

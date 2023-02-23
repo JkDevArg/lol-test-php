@@ -21,12 +21,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         echo json_encode($status);
     }
 
-    if(isset($_POST['challenger_league']) && isset($_POST['server']) && isset($_POST['game'])){
+    if(isset($_POST['challenger_league']) && isset($_POST['server']) && isset($_POST['game']) && isset($_POST['opt'])){
         $status = LeagueApi::challengerLeague(array(
             'server' => $_POST['server'],
             'game' => $_POST['game'],
             'opt' => $_POST['opt'],
         ));
+        echo json_encode($status);
     }
 
     if(isset($_POST['league_exp']) && isset($_POST['server']) && isset($_POST['game'])){
@@ -38,5 +39,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             'opt2' => $_POST['opt2'],
             'opt3' => $_POST['opt3']
         ));
+        echo json_encode($status);
     }
 }
