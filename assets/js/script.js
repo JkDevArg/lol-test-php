@@ -9,7 +9,6 @@ form.addEventListener('submit', event => {
 });
 
 function sendData(formData) {
-  console.log(formData);
   fetch('api.php', {
     method: 'POST',
     body: formData
