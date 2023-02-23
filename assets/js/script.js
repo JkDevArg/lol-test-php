@@ -33,7 +33,6 @@ function sendData(formData) {
   })
   .catch(error => {
     console.error('Error:', error);
-    const errorMessage = document.getElementById('error-message');
     M.toast({html: 'Se produjo un error al obtener los datos.', classes: 'rounded red darken-1'});
   });
 }

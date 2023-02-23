@@ -25,7 +25,7 @@
             $status = explode(' ', $http_response_header[0])[1];
             if ($status == '404') {
                 return [
-                    'status' => '404',
+                    'status' => $status,
                     'msg' => 'No se encontraron datos.'
                 ];
             }
